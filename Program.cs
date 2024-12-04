@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using my_api.Data;
+using my_api.Interfaces;
+using my_api.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,12 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 
  
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IStockRepository,StockRepository>();
 
 
 var app = builder.Build();
@@ -28,5 +33,5 @@ app.UseHttpsRedirection();
 
 
 
-
+app.MapControllers();
 app.Run();
