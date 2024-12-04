@@ -1,0 +1,13 @@
+# Fichiers et dossiers générés
+bin/
+obj/
+
+# Fichiers de configuration utilisateur
+.vscode/
+*.user
+*.suo
+
+# Fichiers temporaires
+*.log
+*.tmp
+*.bak
